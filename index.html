@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GİB XML ve ZIP dosyalarını tarayıcı içinde ön izleyip PDF olarak indiren statik dönüştürücü.">
+    <title>GİB XML PDF Dönüştürücü</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.2" integrity="sha384-J7cw2fbG1T4C5MirTVUxsZGaMfw2m0XsCgOQEqUvB1OF9VIsHWuZF1GmyVRzs7eu" crossorigin="anonymous"></script>
+    <!-- html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha384-Yv5O+t3uE3hunW8uyrbpPW3iw6/5/Y7HitWJBLgqfMoA36NogMmy+8wWZMpn3HWc" crossorigin="anonymous"></script>
+    <!-- JSZip -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar: entire sidebar is the drop zone -->
+        <aside class="sidebar" id="sidebar">
+            <input type="file" id="fileInput" multiple accept=".xml,.zip" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;">
+
+            <div class="sidebar-header">
+                <i class="ph ph-receipt" style="font-size: 26px; color: #a855f7;"></i>
+                <h1>Faturalar</h1>
+            </div>
+
+            <div class="drop-hint">
+                <i class="ph ph-upload-simple"></i>
+                <p>XML veya ZIP sürükle<br><span>ya da tıklayarak seç</span></p>
+            </div>
+
+            <div class="file-list" id="fileList">
+                <div class="empty-state">
+                    <i class="ph ph-file-dashed"></i>
+                    <p>Henüz fatura yüklenmedi.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="file-info" id="fileInfo">
+                    <h2>Görüntüleyici</h2>
+                    <p>Ön izlemek için bir fatura seçin</p>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-secondary" id="btnPrint" disabled>
+                        <i class="ph ph-printer"></i>
+                        Yazdır
+                    </button>
+                    <button class="btn btn-primary" id="btnDownloadPDF" disabled>
+                        <i class="ph ph-download-simple"></i>
+                        PDF İndir
+                    </button>
+                </div>
+            </header>
+
+            <div class="preview-area" id="previewArea">
+                <div class="preview-placeholder">
+                    Görüntüleme Alanı
+                </div>
+                <iframe id="invoiceFrame" class="invoice-frame" title="Fatura Görüntüsü" sandbox=""></iframe>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
