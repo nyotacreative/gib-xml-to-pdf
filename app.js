@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Drag and Drop: entire sidebar is the drop zone ---
     sidebar.addEventListener('click', (e) => {
         // Don't open picker when clicking a file-item or remove button
-        if (e.target.closest('.file-item')) return;
+        if (e.target.closest('.file-item, .made-by-link')) return;
         fileInput.click();
     });
 
